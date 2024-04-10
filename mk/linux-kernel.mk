@@ -1,6 +1,5 @@
 LINUX_KERNEL_SLIDES = \
 		first-slides \
-		about-us \
 		course-information-title \
 		beagleboneblack-board \
 		kernel-shopping-list \
