@@ -63,9 +63,9 @@ to your host system, and then check device properties such as:
    \item \code{speed}: will show you whether this is a gigabit
          or hundred megabit interface.
    \item \code{address}: will show the device MAC address. No
-	 need to get it from a complex command!
+         need to get it from a complex command!
    \item \code{statistics/rx_bytes} will show you how many bytes
-	 were received on this interface.
+         were received on this interface.
 \end{itemize}
 
 Don't hesitate to look for further interesting properties by yourself!
@@ -150,7 +150,7 @@ In the probe routine (run every time a matching device is found):
 \item Using the I2C raw API (\kfunc{i2c_master_send} and
         \kfunc{i2c_master_recv}), send two bytes to the
         device: \code{0xf0} and \code{0x55}\footnote{
-	The I2C messages to communicate with a wiimote
+        The I2C messages to communicate with a wiimote
         extension are in the form: \code{<i2c_address> <register> }
         for reading and \code{<i2c_address> <register> <value>} for
         writing. The address, \code{0x52} is sent by the i2c framework

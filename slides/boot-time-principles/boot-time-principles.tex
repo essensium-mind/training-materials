@@ -5,18 +5,18 @@
 \begin{columns}
     \column{0.75\textwidth}
     \begin{itemize}
-	\item Reducing boot time implies measuring boot time!
-	\item You will have to choose reference events at which you
-	      start and stop counting time.
-	\item What you choose will depend on the goal you want to
+        \item Reducing boot time implies measuring boot time!
+        \item You will have to choose reference events at which you
+              start and stop counting time.
+        \item What you choose will depend on the goal you want to
               achieve. Here are typical cases:
-	\begin{itemize}
-		\item Showing a splash screen or an animation, playing a sound to
-	              indicate the board is booting
-		\item Starting a listening service to handle a particular
-	              message
-	        \item Being fully functional as fast as possible
-	\end{itemize}
+        \begin{itemize}
+                \item Showing a splash screen or an animation, playing a sound to
+                      indicate the board is booting
+                \item Starting a listening service to handle a particular
+                      message
+                \item Being fully functional as fast as possible
+        \end{itemize}
     \end{itemize}
     \column{0.25\textwidth}
     % From https://openclipart.org/detail/46075/stop-watch-by-klaasvangend
@@ -70,12 +70,12 @@ Donald Knuth}
 \item Taking the time to measure time carefully is important.
       \begin{itemize}
            \item Advice to make at least 3 measures for each
-		 configuration you want to measure.
+                 configuration you want to measure.
            \item Pay attention to variations between measures.
-		 Measures are only valuable when there is a low
-		 jitter between them.
+                 Measures are only valuable when there is a low
+                 jitter between them.
            \item Keep copies of all your logs. Always useful to
-		 double check or analyze measures which are
+                 double check or analyze measures which are
                  inconsistent with the others.
       \end{itemize}
 \item Find the worst consumers of time and address them first.

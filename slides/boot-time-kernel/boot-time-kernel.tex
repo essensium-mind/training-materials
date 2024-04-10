@@ -2,27 +2,27 @@
 
 \begin{frame}
 \frametitle{Advice for kernel optimizations}
-	\small
-	\begin{itemize}
-	\item During these tests, you will make countless kernel updates, and will
-	      have to test them on the hardware to make sure nothing is broken.
-	\item During this phase, we recommend to switch to loading the kernel through
-	      the network (\code{tftp}) if possible. This will save a lot of time
-	      compared to updating the kernel on the SD card, and reduces the risk
-	      to damage your SD card reader.
-	\item Loading the kernel through the network will introduce delays and jitter,
-	      but that won't be an issue:
-	      \begin{itemize}
-	      \item In the cases when what you measure is kernel size reduction, just
-		    making sure each new kernel is still functional.
-	      \item If you want to measure the boot time impact of your changes,
-		    you can still start counting time from the \code{Starting kernel}
-		    message.
-	      \end{itemize}
-	\item Make kernel configuration changes {\bf very progressively} and keep
-	      manual snapshots of each configuration. This will help when a change
-	      breaks a working kernel.
-	\end{itemize}
+        \small
+        \begin{itemize}
+        \item During these tests, you will make countless kernel updates, and will
+              have to test them on the hardware to make sure nothing is broken.
+        \item During this phase, we recommend to switch to loading the kernel through
+              the network (\code{tftp}) if possible. This will save a lot of time
+              compared to updating the kernel on the SD card, and reduces the risk
+              to damage your SD card reader.
+        \item Loading the kernel through the network will introduce delays and jitter,
+              but that won't be an issue:
+              \begin{itemize}
+              \item In the cases when what you measure is kernel size reduction, just
+                    making sure each new kernel is still functional.
+              \item If you want to measure the boot time impact of your changes,
+                    you can still start counting time from the \code{Starting kernel}
+                    message.
+              \end{itemize}
+        \item Make kernel configuration changes {\bf very progressively} and keep
+              manual snapshots of each configuration. This will help when a change
+              breaks a working kernel.
+        \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -112,18 +112,18 @@ function:
 \frametitle{Reduce kernel size}
 First, we focus on reducing the size without removing features
 \begin{itemize}
-	\item The main mechanism is to use kernel modules
-	\item Compile everything that is not needed at boot time as a
-		module
-	\item Two benefits: the kernel will be smaller and load faster, and
-		less initialization code will get executed
-	\item Remove features that are not used by userland:
-		\kconfig{CONFIG_KALLSYMS}, \kconfig{CONFIG_DEBUG_FS},
-		\kconfig{CONFIG_BUG}
-	\item Use features designed for embedded systems:
-	      \kconfig{CONFIG_EMBEDDED}, \kconfig{CONFIG_SLUB_TINY}
-	      (reducing memory footprint for systems with less than 16MB
-	      of RAM, but not scaling well).
+        \item The main mechanism is to use kernel modules
+        \item Compile everything that is not needed at boot time as a
+                module
+        \item Two benefits: the kernel will be smaller and load faster, and
+                less initialization code will get executed
+        \item Remove features that are not used by userland:
+                \kconfig{CONFIG_KALLSYMS}, \kconfig{CONFIG_DEBUG_FS},
+                \kconfig{CONFIG_BUG}
+        \item Use features designed for embedded systems:
+              \kconfig{CONFIG_EMBEDDED}, \kconfig{CONFIG_SLUB_TINY}
+              (reducing memory footprint for systems with less than 16MB
+              of RAM, but not scaling well).
 \end{itemize}
 \end{frame}
 
@@ -133,12 +133,12 @@ First, we focus on reducing the size without removing features
 \begin{columns}
 \column{0.5\textwidth}
 \begin{itemize}
-	\item Use this command to find the biggest symbols in the compiled kernel:\\
-	      \code{nm --size -r vmlinux}
-	\item For those which could be unnecessary, look for them in the code
-	\item Then study the corresponding \code{Makefile} to see
-	      how not to compile them, if possible.
-	\item See \url{https://elinux.org/System_Size}
+        \item Use this command to find the biggest symbols in the compiled kernel:\\
+              \code{nm --size -r vmlinux}
+        \item For those which could be unnecessary, look for them in the code
+        \item Then study the corresponding \code{Makefile} to see
+              how not to compile them, if possible.
+        \item See \url{https://elinux.org/System_Size}
 \end{itemize}
 \column{0.5\textwidth}
 \begin{block}{}
@@ -245,11 +245,11 @@ config KERNEL_ZSTD
     \item It is also possible to boot an uncompressed kernel:\\
           \code{arch/<arch>/boot/Image}
     \item This could be a worthy solution if you have a slow CPU
-	  and fast I/O, or if you're booting Linux in an emulated
-	  machine (hardware or software emulator).
+          and fast I/O, or if you're booting Linux in an emulated
+          machine (hardware or software emulator).
     \item On U-Boot on ARM, you won't be able to boot with the
-	  \code{bootz} command. You will need to use \code{bootm}
-	  and a \code{uImage} file.
+          \code{bootz} command. You will need to use \code{bootm}
+          and a \code{uImage} file.
 \end{itemize}
 See \url{https://bootlin.com/blog/uncompressed-linux-kernel-on-arm/}
 \end{frame}
@@ -370,11 +370,11 @@ unnecessary features:
 \begin{itemize}
         \item \kconfigval{CONFIG_PRINTK}{n} will have the same effect as the
               \code{quiet} command line argument but you won't have
-	      any access to kernel messages. You will have a
+              any access to kernel messages. You will have a
               significantly smaller kernel though.
-	\item Compile your kernel in {\em Thumb2} mode (on ARM 32 bit):
-	      \kconfig{CONFIG_THUMB2_KERNEL} (any ARM toolchain can do
-	      that).
+        \item Compile your kernel in {\em Thumb2} mode (on ARM 32 bit):
+              \kconfig{CONFIG_THUMB2_KERNEL} (any ARM toolchain can do
+              that).
 \end{itemize}
 \end{frame}
 

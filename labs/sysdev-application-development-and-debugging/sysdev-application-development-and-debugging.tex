@@ -281,9 +281,9 @@ simple:
 
 \begin{itemize}
   \item If you don't have an SSH key yet (look at \code{~/.ssh/}),
-	generate a password-less one with the \code{ssh-keygen} command.
-	By default, this creates two files in \code{~/.ssh/}:
-	\code{id_rsa} (private key) and \code{id_rsa.pub} (public key).
+        generate a password-less one with the \code{ssh-keygen} command.
+        By default, this creates two files in \code{~/.ssh/}:
+        \code{id_rsa} (private key) and \code{id_rsa.pub} (public key).
   \item Then create the \code{/root/.ssh} directory {\bf on the target}
         and in it, create an \code{authorized_keys} file with the line in
         \code{id_rsa.pub}.
@@ -325,7 +325,7 @@ Here are these files:
          calling the \code{prep-debug.sh} script.
    \item \code{.vscode/launch.json}: these are the settings for remote
          debugging. Again, open this file, update the paths, and the
-	 target IP address if necessary.
+         target IP address if necessary.
 \end{itemize}
 
 First, start VS Code:

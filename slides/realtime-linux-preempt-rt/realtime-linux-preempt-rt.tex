@@ -2,14 +2,14 @@
 
 \begin{frame}
   \frametitle{The PREEMPT\_RT Patch}
-	\begin{itemize}
-		\item One way to implement a multi-task Real-Time Operating System is to have a preemptible system
-		\item Any task can be interrupted at any point so that higher priority tasks can run
-		\item Userspace preemption already exists in Linux
-		\item The Linux Kernel also supports real-time scheduling policies
-		\item However, code that runs in kernel mode isn't fully preemptible
-		\item The Preempt-RT patch aims at making all code running in kernel mode preemptible
-	\end{itemize}
+        \begin{itemize}
+                \item One way to implement a multi-task Real-Time Operating System is to have a preemptible system
+                \item Any task can be interrupted at any point so that higher priority tasks can run
+                \item Userspace preemption already exists in Linux
+                \item The Linux Kernel also supports real-time scheduling policies
+                \item However, code that runs in kernel mode isn't fully preemptible
+                \item The Preempt-RT patch aims at making all code running in kernel mode preemptible
+        \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -34,138 +34,138 @@
         model at boot time: \code{preempt=none}, \code{preempt=voluntary} or
         \code{preempt=full}
   \item In 5.15, the realtime preemption locking core is merged in mainline.
-	This was the biggest part to mainline. A few pending changes are
-	still left. See \url{https://lwn.net/Articles/867919/}.
+        This was the biggest part to mainline. A few pending changes are
+        still left. See \url{https://lwn.net/Articles/867919/}.
   \item \code{printk()} is one of the remaining pieces to be upstreamed
   \item See the latest news on \url{https://wiki.linuxfoundation.org/realtime/}
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Why use PREEMPT\_RT?}
-	\begin{itemize}
-		\item Allow using the POSIX/Linux API, which is portable and familiar
-		\item Benefit from the huge hardware support provided by Linux
-		\item Run common software in non-RT mode, and custom critical software in parallel
-		\item Benefit from the community support and help
-	\end{itemize}
+        \frametitle{Why use PREEMPT\_RT?}
+        \begin{itemize}
+                \item Allow using the POSIX/Linux API, which is portable and familiar
+                \item Benefit from the huge hardware support provided by Linux
+                \item Run common software in non-RT mode, and custom critical software in parallel
+                \item Benefit from the community support and help
+        \end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Why not to use PREEMPT\_RT?}
-	\begin{itemize}
-		\item Linux will never be a formally proven RTOS
-		\item The hardware Linux typically runs on isn't designed with RT in mind
-		\item The RT patch makes the Kernel deterministic and preemptible...
-		\item ... but the goal is not to have the lowest latencies possible
-	\end{itemize}
+        \frametitle{Why not to use PREEMPT\_RT?}
+        \begin{itemize}
+                \item Linux will never be a formally proven RTOS
+                \item The hardware Linux typically runs on isn't designed with RT in mind
+                \item The RT patch makes the Kernel deterministic and preemptible...
+                \item ... but the goal is not to have the lowest latencies possible
+        \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Getting the patch}
-	\begin{itemize}
-		\item The RT Patchset is released \textbf{every other} kernel release
-		\item It can be downloaded as a set of patches or a single patch: \\
-			\url{https://cdn.kernel.org/pub/linux/kernel/projects/rt/}
-		\item Kernel trees with the patch applied are also available:
-			\begin{itemize}
-				\item \url{https://git.kernel.org/cgit/linux/kernel/git/rt/linux-rt-devel.git}
-				\item \url{https://git.kernel.org/cgit/linux/kernel/git/rt/linux-stable-rt.git}
-			\end{itemize}
-		\item Most build-systems like Buildroot or Yocto Project support building an RT Kernel
-	\end{itemize}
+        \begin{itemize}
+                \item The RT Patchset is released \textbf{every other} kernel release
+                \item It can be downloaded as a set of patches or a single patch: \\
+                        \url{https://cdn.kernel.org/pub/linux/kernel/projects/rt/}
+                \item Kernel trees with the patch applied are also available:
+                        \begin{itemize}
+                                \item \url{https://git.kernel.org/cgit/linux/kernel/git/rt/linux-rt-devel.git}
+                                \item \url{https://git.kernel.org/cgit/linux/kernel/git/rt/linux-stable-rt.git}
+                        \end{itemize}
+                \item Most build-systems like Buildroot or Yocto Project support building an RT Kernel
+        \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{The legacy of the RT patch}
   Many current features in the Linux Kernel originated from the RT patch:
-	\begin{itemize}
-		\item Kernel-side preemption
-		\item High Resolution Timers
-		\item Threaded interrupts
-		\item Priority-Inheritance support for locking primitives
-		\item Tickless operation
-		\item Earliest-Deadline First scheduler
-		\item Realtime locks - Locking primitives conversion
-		\item Tracing
-		\item Printk
-	\end{itemize}
+        \begin{itemize}
+                \item Kernel-side preemption
+                \item High Resolution Timers
+                \item Threaded interrupts
+                \item Priority-Inheritance support for locking primitives
+                \item Tickless operation
+                \item Earliest-Deadline First scheduler
+                \item Realtime locks - Locking primitives conversion
+                \item Tracing
+                \item Printk
+        \end{itemize}
 \end{frame}
 
 
 \begin{frame}
   \frametitle{Locking}
-	\begin{itemize}
-		\item Locks are synchronisation primitives that arbitrate concurrent accesses to a resource
-		\item Several locking primitives exist in the Kernel and in Userspace
-		\item Kernel lock families are:
-			\begin{itemize}
-				\item Sleeping locks
-				\item CPU Local locks
-				\item Spinning locks
-			\end{itemize}
-	\end{itemize}
+        \begin{itemize}
+                \item Locks are synchronisation primitives that arbitrate concurrent accesses to a resource
+                \item Several locking primitives exist in the Kernel and in Userspace
+                \item Kernel lock families are:
+                        \begin{itemize}
+                                \item Sleeping locks
+                                \item CPU Local locks
+                                \item Spinning locks
+                        \end{itemize}
+        \end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Critical sections}
-	\begin{itemize}
-		\item Spinning locks can be taken with interrupts constraints
-		\item Spinlock functions have variants with some suffixes:
-		\begin{itemize}
-		\item \code{_bh()}
-			\begin{itemize}
-				\item Disable / Enable soft interrupts (bottom halves)
-			\end{itemize}
-		\item \code{_irq()}
-			\begin{itemize}
-				\item Disable / Enable interrupts
-			\end{itemize}
-		\item \code{_irqsave()} / \code{_irqrestore()}
-			\begin{itemize}
-				\item Save and disable or restore interrupt state (if previously disabled)
-			\end{itemize}
-		\end{itemize}
-		\item Dedicated functions also exist, but should be used only for the Kernel core
-		\item \kfunc{preempt_disable} / \kfunc{preempt_enable}
-			\begin{itemize}
-				\item Disable / Enable preemption, to protect per-CPU data
-			\end{itemize}
-		\item \kfunc{migrate_disable} / \kfunc{migrate_enable}
-			\begin{itemize}
-				\item Disable / Enable migration, also to protect per-CPU data
-			\end{itemize}
+        \frametitle{Critical sections}
+        \begin{itemize}
+                \item Spinning locks can be taken with interrupts constraints
+                \item Spinlock functions have variants with some suffixes:
+                \begin{itemize}
+                \item \code{_bh()}
+                        \begin{itemize}
+                                \item Disable / Enable soft interrupts (bottom halves)
+                        \end{itemize}
+                \item \code{_irq()}
+                        \begin{itemize}
+                                \item Disable / Enable interrupts
+                        \end{itemize}
+                \item \code{_irqsave()} / \code{_irqrestore()}
+                        \begin{itemize}
+                                \item Save and disable or restore interrupt state (if previously disabled)
+                        \end{itemize}
+                \end{itemize}
+                \item Dedicated functions also exist, but should be used only for the Kernel core
+                \item \kfunc{preempt_disable} / \kfunc{preempt_enable}
+                        \begin{itemize}
+                                \item Disable / Enable preemption, to protect per-CPU data
+                        \end{itemize}
+                \item \kfunc{migrate_disable} / \kfunc{migrate_enable}
+                        \begin{itemize}
+                                \item Disable / Enable migration, also to protect per-CPU data
+                        \end{itemize}
 
-	\end{itemize}
+        \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Sleeping locks}
-	\begin{itemize}
-		\item Sleeping locks will sleep and schedule while waiting
-		\item There are several types of sleeping locks:
-	\begin{itemize}
-		\item \ksym{mutex}
-		\item \ksym{rt_mutex}
-		\item \ksym{semaphore}
-		\item \ksym{rw_semaphore}
-	\end{itemize}
-	\end{itemize}
+        \begin{itemize}
+                \item Sleeping locks will sleep and schedule while waiting
+                \item There are several types of sleeping locks:
+        \begin{itemize}
+                \item \ksym{mutex}
+                \item \ksym{rt_mutex}
+                \item \ksym{semaphore}
+                \item \ksym{rw_semaphore}
+        \end{itemize}
+        \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Spinlocks}
-	\begin{itemize}
-		\item Spinlocks will busy-wait until the lock is freed
-		\item There exist several types of spinlocks:
-		\begin{itemize}
-			\item \ksym{spinlock_t}
-			\item \ksym{rwlock_t}
-			\item \ksym{raw_spinlock_t}
-		\end{itemize}
-		\item Spinlocks will disable preemption when taken
-		\item With PREEMPT\_RT, \ksym{spinlock_t} and \ksym{rwlock_t} will become sleeping locks
-	\end{itemize}
+        \begin{itemize}
+                \item Spinlocks will busy-wait until the lock is freed
+                \item There exist several types of spinlocks:
+                \begin{itemize}
+                        \item \ksym{spinlock_t}
+                        \item \ksym{rwlock_t}
+                        \item \ksym{raw_spinlock_t}
+                \end{itemize}
+                \item Spinlocks will disable preemption when taken
+                \item With PREEMPT\_RT, \ksym{spinlock_t} and \ksym{rwlock_t} will become sleeping locks
+        \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -194,88 +194,88 @@
 
 \begin{frame}
   \frametitle{Printk}
-	\begin{itemize}
-		\item \code{printk()} is one of the main logging mechanism in the kernel
-		\item It works in all execution context
-		\item It's currently one of the last items preventing the RT-patch from being fully upstream
-		\item Currently, the last kernel task who printed must print the full buffer
-		\item A low priority task can block a high priority task by printing lots of data
-		\item A low log-level can help remove these issues for now
-	\end{itemize}
+        \begin{itemize}
+                \item \code{printk()} is one of the main logging mechanism in the kernel
+                \item It works in all execution context
+                \item It's currently one of the last items preventing the RT-patch from being fully upstream
+                \item Currently, the last kernel task who printed must print the full buffer
+                \item A low priority task can block a high priority task by printing lots of data
+                \item A low log-level can help remove these issues for now
+        \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Interrupt handlers}
-	\begin{itemize}
-		\item Interrupt handlers run with interrupts disabled
-		\item In PREEMPT\_RT, almost all interrupt handlers are \textbf{threaded}
-		\item Very small hardware interrupt handlers are used, that have a well-defined execution time
-		\item They acknowledge the interrupts, and enqueues the "real" interrupt handler
-		\item The interrupt handler runs in a dedicated Kernel thread
-		\item Threaded interrupts are well established in the mainline kernel
-		\item Exceptions: \code{IRQF_NOTHREAD}, \code{IRQF_PERCPU}, \code{IRQS_ONESHOT}
-	\end{itemize}
+        \begin{itemize}
+                \item Interrupt handlers run with interrupts disabled
+                \item In PREEMPT\_RT, almost all interrupt handlers are \textbf{threaded}
+                \item Very small hardware interrupt handlers are used, that have a well-defined execution time
+                \item They acknowledge the interrupts, and enqueues the "real" interrupt handler
+                \item The interrupt handler runs in a dedicated Kernel thread
+                \item Threaded interrupts are well established in the mainline kernel
+                \item Exceptions: \code{IRQF_NOTHREAD}, \code{IRQF_PERCPU}, \code{IRQS_ONESHOT}
+        \end{itemize}
 %  https://wiki.linuxfoundation.org/realtime/documentation/technical_details/threadirq
 \end{frame}
 
 \begin{frame}
-	\frametitle{Hard interrupts vs. Threaded interrupts}
+        \frametitle{Hard interrupts vs. Threaded interrupts}
 
-	\begin{columns}
-	\begin{column}{0.50\textwidth}
-	\vspace{-1cm}
-	\begin{figure}
-	\includegraphics[height=0.35\textheight]{slides/realtime-linux-realtime-systems/irq_preemption.pdf}
-	\vspace{-1cm}
-	\caption{Hardware interrupt processing}
-	\end{figure}
-	\vspace{-0.6cm}
-	\begin{figure}
-	\includegraphics[height=0.35\textheight]{slides/realtime-linux-preempt-rt/softirq_preemption.pdf}
-	\vspace{-0.8cm}
-	\caption{Threaded interrupt processing}
-	\end{figure}
-	\end{column}
+        \begin{columns}
+        \begin{column}{0.50\textwidth}
+        \vspace{-1cm}
+        \begin{figure}
+        \includegraphics[height=0.35\textheight]{slides/realtime-linux-realtime-systems/irq_preemption.pdf}
+        \vspace{-1cm}
+        \caption{Hardware interrupt processing}
+        \end{figure}
+        \vspace{-0.6cm}
+        \begin{figure}
+        \includegraphics[height=0.35\textheight]{slides/realtime-linux-preempt-rt/softirq_preemption.pdf}
+        \vspace{-0.8cm}
+        \caption{Threaded interrupt processing}
+        \end{figure}
+        \end{column}
 
-		\begin{column}{0.50\textwidth}
-			\begin{itemize}
-				\item Small, well-defined hard irq handlers
-				\item Irq handlers run in a dedicated task
-				\item It has a PID, and can be assigned a priority
-				\item Critical tasks can run regardless of interrupts
-				\item Use \code{ps -e} to list tasks
-				\item Use \code{chrt -p <prio> <pid>} to change the priority
-			\end{itemize}
-		\end{column}
-	\end{columns}
+                \begin{column}{0.50\textwidth}
+                        \begin{itemize}
+                                \item Small, well-defined hard irq handlers
+                                \item Irq handlers run in a dedicated task
+                                \item It has a PID, and can be assigned a priority
+                                \item Critical tasks can run regardless of interrupts
+                                \item Use \code{ps -e} to list tasks
+                                \item Use \code{chrt -p <prio> <pid>} to change the priority
+                        \end{itemize}
+                \end{column}
+        \end{columns}
 \end{frame}
 
 \begin{frame}
   \frametitle{Uncompatible options}
-	\begin{itemize}
-		\item Some configuration options don't play well with realtime
-		\item \kconfig{CONFIG_LOCKUP_DETECTOR} and \kconfig{CONFIG_DETECT_HUNG_TASK}
-			\begin{itemize}
-				\item Kernel tasks with a priority of 99, can introduce latencies
-			\end{itemize}
-		\item \code{CONFIG_DEBUG_*}
-			\begin{itemize}
-				\item Debugging options are very useful
-				\item Most of them introduce latencies due to heavy logging
-				\item Some options adds security checks and verifiers (lockdep)
-			\end{itemize}
-	\end{itemize}
+        \begin{itemize}
+                \item Some configuration options don't play well with realtime
+                \item \kconfig{CONFIG_LOCKUP_DETECTOR} and \kconfig{CONFIG_DETECT_HUNG_TASK}
+                        \begin{itemize}
+                                \item Kernel tasks with a priority of 99, can introduce latencies
+                        \end{itemize}
+                \item \code{CONFIG_DEBUG_*}
+                        \begin{itemize}
+                                \item Debugging options are very useful
+                                \item Most of them introduce latencies due to heavy logging
+                                \item Some options adds security checks and verifiers (lockdep)
+                        \end{itemize}
+        \end{itemize}
 \end{frame}
 
 \begin{frame}
   \frametitle{Preemption models}
   The Linux kernel Scheduler has several preemption models available:
-	\begin{itemize}
-		\item \kconfig{CONFIG_PREEMPT_NONE} - No Forced Preemption (server)
-		\item \kconfig{CONFIG_PREEMPT_VOLUNTARY} - Voluntary Kernel Preemption (Desktop)
-		\item \kconfig{CONFIG_PREEMPT} - Preemptible Kernel (Low-latency Desktop)
-		\item \kconfig{CONFIG_PREEMPT_RT} - Fully Preemptible Kernel (Real-Time)
-	\end{itemize}
+        \begin{itemize}
+                \item \kconfig{CONFIG_PREEMPT_NONE} - No Forced Preemption (server)
+                \item \kconfig{CONFIG_PREEMPT_VOLUNTARY} - Voluntary Kernel Preemption (Desktop)
+                \item \kconfig{CONFIG_PREEMPT} - Preemptible Kernel (Low-latency Desktop)
+                \item \kconfig{CONFIG_PREEMPT_RT} - Fully Preemptible Kernel (Real-Time)
+        \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -327,19 +327,19 @@
 \end{frame}
 
 \begin{frame}
-	\frametitle{4th option: fully preemptible kernel}
-	  \kconfig{CONFIG_PREEMPT_RT}\\
-	  Almost all kernel code can be involuntarily preempted at any time.
-	  \begin{itemize}
-	  \item spinlocks are turned into sleeping locks
-	  \item Only \ksym{raw_spinlock_t} remains a real spinning lock
-	  \item All interrupt handlers are threaded, except for a few that explicitely need hard irq
-		  \begin{itemize}
-			  \item This is the case for drivers involved in interrupt dispatching
-			  \item cpufreq and cpuidle drivers too
-		  \end{itemize}
-	  \item For use on systems with Realtime requirements
-	  \item If you find a kernel-side unbounded latency, \textbf{this is a bug}
-	  \end{itemize}
+        \frametitle{4th option: fully preemptible kernel}
+          \kconfig{CONFIG_PREEMPT_RT}\\
+          Almost all kernel code can be involuntarily preempted at any time.
+          \begin{itemize}
+          \item spinlocks are turned into sleeping locks
+          \item Only \ksym{raw_spinlock_t} remains a real spinning lock
+          \item All interrupt handlers are threaded, except for a few that explicitely need hard irq
+                  \begin{itemize}
+                          \item This is the case for drivers involved in interrupt dispatching
+                          \item cpufreq and cpuidle drivers too
+                  \end{itemize}
+          \item For use on systems with Realtime requirements
+          \item If you find a kernel-side unbounded latency, \textbf{this is a bug}
+          \end{itemize}
 \end{frame}
 

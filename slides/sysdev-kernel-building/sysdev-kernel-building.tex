@@ -46,17 +46,17 @@
   First, specify the architecture for the kernel to build
   \begin{itemize}
   \item Set \code{ARCH} to the name of a directory under \kdir{arch}:\\
-	\code{ARCH=arm} or \code{ARCH=arm64} or \code{ARCH=riscv}, etc
+        \code{ARCH=arm} or \code{ARCH=arm64} or \code{ARCH=riscv}, etc
   \item By default, the kernel build system assumes that the
         kernel is configured and built for the host architecture
-	(\code{x86} in our case, native kernel compiling)
+        (\code{x86} in our case, native kernel compiling)
   \item The kernel build system will use this setting to:
-	\begin{itemize}
-	\item Use the configuration options for the target
-	      architecture.
-	\item Compile the kernel with source code and headers
-	      for the target architecture.
-	\end{itemize}
+        \begin{itemize}
+        \item Use the configuration options for the target
+              architecture.
+        \item Compile the kernel with source code and headers
+              for the target architecture.
+        \end{itemize}
   \end{itemize}
 \end{frame}
 
@@ -65,12 +65,12 @@
   The compiler invoked by the kernel Makefile is \code{$(CROSS_COMPILE)gcc}
   \begin{itemize}
     \item Specifying the compiler is already needed at configuration
-	  time, as some kernel configuration options depend on the
+          time, as some kernel configuration options depend on the
           capabilities of the compiler.
     \item When compiling natively
       \begin{itemize}
-	 \item Leave \code{CROSS_COMPILE} undefined and the kernel
-	    will be natively compiled for the host architecture
+         \item Leave \code{CROSS_COMPILE} undefined and the kernel
+            will be natively compiled for the host architecture
             using \code{gcc}.
       \end{itemize}
     \item When using a cross-compiler
@@ -115,8 +115,8 @@
   \item Desktop or server case:
      \begin{itemize}
        \item Advisable to start with the configuration of your running
-	  kernel:\\
-	  \code{cp /boot/config-`uname -r` .config}
+          kernel:\\
+          \code{cp /boot/config-`uname -r` .config}
      \end{itemize}
    \item Embedded platform case:
      \begin{itemize}
@@ -380,7 +380,7 @@ CONFIG_FAT_DEFAULT_CODEPAGE=437
       fully load the CPU and I/Os at all times.\\
           Example: \code{make -j 8}
     \item To {\bf re}compile faster (7x according to some benchmarks),\\
-	  use the \code{ccache} compiler cache:\\
+          use the \code{ccache} compiler cache:\\
           \code{export CROSS_COMPILE="ccache arm-linux-"}
   \end{itemize}
   \column{0.3\textwidth}

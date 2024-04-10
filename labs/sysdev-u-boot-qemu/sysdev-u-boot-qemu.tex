@@ -185,8 +185,8 @@ Start QEMU again, but this time with the emulated SD card
 
 \begin{bashinput}
 $ qemu-system-arm -M vexpress-a9 -m 128M -nographic \
-		  -kernel u-boot/u-boot \
-		  -sd sd.img
+                  -kernel u-boot/u-boot \
+                  -sd sd.img
 \end{bashinput}
 
 Now, in the U-Boot prompt, make sure that you can set and store an environment variable:
@@ -231,9 +231,9 @@ because of the need to bring up the network interface:
 
 \begin{bashinput}
 $ sudo qemu-system-arm -M vexpress-a9 -m 128M -nographic \
-	-kernel u-boot/u-boot \
-	-sd sd.img \
-	-net tap,script=./qemu-myifup -net nic
+        -kernel u-boot/u-boot \
+        -sd sd.img \
+        -net tap,script=./qemu-myifup -net nic
 \end{bashinput}
 
 Note the new net options:

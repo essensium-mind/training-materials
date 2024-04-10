@@ -484,23 +484,23 @@ lrwxrwxrwx    subsystem -> ../../../../../../bus/i2c
         \code{/sys/class/gpios}
     \begin{itemize}
        \item You will find many instructions on the Internet about how
-	     to drive GPIOs through this interface.
+             to drive GPIOs through this interface.
        \item However, this interface is deprecated and has multiple
              shortcomings:
              \begin{itemize}
-		\item GPIOs remain exported if the process using them crashes
-		\item Need to compute the GPIO numbers, such numbers are not stable
-	     \end{itemize}
+                \item GPIOs remain exported if the process using them crashes
+                \item Need to compute the GPIO numbers, such numbers are not stable
+             \end{itemize}
     \end{itemize}
   \item A new interface recommended: \href{https://git.kernel.org/pub/scm/libs/libgpiod/libgpiod.git/}{libgpiod}
     \begin{itemize}
-	\item Based on \code{/dev/gpiochipx} character devices
+        \item Based on \code{/dev/gpiochipx} character devices
         \item Implementing advanced features not possible with the legacy interface
-	\item Of course, this is a C library
+        \item Of course, this is a C library
         \item But it also provides command line utilities:
               \code{gpiodetect}, \code{gpioset}, \code{gpioget}...
-	\item The only constraint is to cross-compile them for your target
-	      (the legacy interface could be used without any additional software).
+        \item The only constraint is to cross-compile them for your target
+              (the legacy interface could be used without any additional software).
     \end{itemize}
   \end{itemize}
 \end{frame}

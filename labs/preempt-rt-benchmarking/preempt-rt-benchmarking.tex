@@ -14,24 +14,24 @@ First, we will need to install some benchmark and analysis tools on our system.
 In the Buildroot \code{make menuconfig} interface, enable the following packages:
 
 \begin{itemize}
-	\item rt-tests
-	\item powertop
-	\item perf
-	\item stress-ng
-	\item iperf3
-	\item fping
-	\item scheduling utilites from the util-linux package
-	\item python3
-	\item screen
-	\item dropbear
+        \item rt-tests
+        \item powertop
+        \item perf
+        \item stress-ng
+        \item iperf3
+        \item fping
+        \item scheduling utilites from the util-linux package
+        \item python3
+        \item screen
+        \item dropbear
 \end{itemize}
 
 You'll also need to enable a few features in the kernel. Run \code{make linux-menuconfig} and select
 the following options, located in "Kernel Hacking":
 
 \begin{itemize}
-	\item Compile-time checks and compiler options -> Compile the kernel with debug info
-	\item Tracers -> Function tracer, Interrupts-off tracer, Preemption off tracer, scheduling latency tracer...
+        \item Compile-time checks and compiler options -> Compile the kernel with debug info
+        \item Tracers -> Function tracer, Interrupts-off tracer, Preemption off tracer, scheduling latency tracer...
 \end{itemize}
 
 Re-build the image, and boot it on the board: \code {make linux-rebuild all}
@@ -52,28 +52,28 @@ your own machine!
 Here's a few leads:
 
 \begin{itemize}
-	\item Is the system SMP?
-	\item Do we need to isolate our task?
-	\item Try changing the scheduling policy
-	\item Try changing the scheduling priority
-	\item Investigate the various interrupts
-	\item Take a look at the cpuidle and cpufreq configuration
-	\item Are there any NMIs?
+        \item Is the system SMP?
+        \item Do we need to isolate our task?
+        \item Try changing the scheduling policy
+        \item Try changing the scheduling priority
+        \item Investigate the various interrupts
+        \item Take a look at the cpuidle and cpufreq configuration
+        \item Are there any NMIs?
 \end{itemize}
 
 Stress the system using several tools:
 
 \begin{itemize}
-	\item hackbench
-	\item stress-ng
-	\item iperf3
-	\item fping
+        \item hackbench
+        \item stress-ng
+        \item iperf3
+        \item fping
 \end{itemize}
 
 Some kernel options can also be useful:
 
 \begin{itemize}
-	\item \code{CONFIG_TRACE_HWLAT}
+        \item \code{CONFIG_TRACE_HWLAT}
 \end{itemize}
 
 \section{First analysis}
@@ -142,14 +142,14 @@ look in \code{/sys/devices/system/cpu/}. This place is useful since you'll find
 lots of ways to manage the CPUs:
 
 \begin{itemize}
-	\item in \code{cpuX/cpufreq}, you'll find ways to inspect and control the CPU's frequency
-	\item in \code{cpuX/cpuidle}, you'll find ways to inspect and control the CPU's idle states
+        \item in \code{cpuX/cpufreq}, you'll find ways to inspect and control the CPU's frequency
+        \item in \code{cpuX/cpuidle}, you'll find ways to inspect and control the CPU's idle states
 \end{itemize}
 
 If you have multiple CPU cores, it's a good idea to start by isolating:
 \begin{itemize}
-	\item Your process
-	\item Important interrupts
+        \item Your process
+        \item Important interrupts
 \end{itemize}
 
 On the contrary, you might want to restrict interrupts to cores that won't affect
@@ -206,13 +206,13 @@ configuration. Using \code{make linux-menuconfig}, go in the "Kernel hacking" se
 and enable the following options:
 
 \begin{itemize}
-	\item Generic Kernel Debugging Instruments -> Debug Filesystem
-	\item Tracers -> Kernel Function Tracer
-	\item Tracers -> Kernel Function Profiler
-	\item Tracers -> Interrupts-off Latency Tracer
-	\item Tracers -> Preemption-off Latency Tracer
-	\item Tracers -> Scheduling Latency Tracer
-	\item Tracers -> Tracer to detect hardware latencies
+        \item Generic Kernel Debugging Instruments -> Debug Filesystem
+        \item Tracers -> Kernel Function Tracer
+        \item Tracers -> Kernel Function Profiler
+        \item Tracers -> Interrupts-off Latency Tracer
+        \item Tracers -> Preemption-off Latency Tracer
+        \item Tracers -> Scheduling Latency Tracer
+        \item Tracers -> Tracer to detect hardware latencies
 \end{itemize}
 
 You can now recompile your kernel and re-generate your full image:
@@ -236,11 +236,11 @@ You can now move into the tracing subsystem's main directory:
 You can now take a little tour of the files here:
 
 \begin{itemize}
-	\item \code{available_tracers}: Lists all tracers you can use. Each tracer
-		corresponds to what and how do you want the tracing to occur.
-	\item \code{current_tracer}: Write the tracer you want to use in this file
-	\item \code{tracing_on}: Write 1 to start tracing, 0 to stop tracing
-	\item \code{trace}: The content of the trace buffer after tracing is finished
+        \item \code{available_tracers}: Lists all tracers you can use. Each tracer
+                corresponds to what and how do you want the tracing to occur.
+        \item \code{current_tracer}: Write the tracer you want to use in this file
+        \item \code{tracing_on}: Write 1 to start tracing, 0 to stop tracing
+        \item \code{trace}: The content of the trace buffer after tracing is finished
 \end{itemize}
 
 First, try the \code{preemptirqsoff} tracer and start tracing:
@@ -283,20 +283,20 @@ Another approach is to simply start an ftrace session, without relying on a proc
 execution. This is useful in combination with the \code{wakeup_rt}, \code{wakeup}, \code{preemptirqsoff} tracers.
 
 \begin{bashinput}
-	# Start a tracing session
-	trace-cmd start -p wakeup_rt
+        # Start a tracing session
+        trace-cmd start -p wakeup_rt
 
-	# Stop a tracing session
-	trace-cmd stop
+        # Stop a tracing session
+        trace-cmd stop
 
-	# Display the generated trace
-	trace-cmd show
+        # Display the generated trace
+        trace-cmd show
 
-	# Export and clear the trace buffer into trace.dat
-	trace-cmd extract
+        # Export and clear the trace buffer into trace.dat
+        trace-cmd extract
 
-	# Display the extraced trace
-	trace-cmd report
+        # Display the extraced trace
+        trace-cmd report
 \end{bashinput}
 
 This approach also allows you to use \code{cyclictest} in conjunction with \code{ftrace},
@@ -304,14 +304,14 @@ since you can start at tracing session with \code{trace-cmd start} and have it
 stopped automatically when cyclictest detects a high latency:
 
 \begin{bashinput}
-	# Start a tracing session
-	trace-cmd start -p function_graph
+        # Start a tracing session
+        trace-cmd start -p function_graph
 
-	# Launch cyclictest with the breaktrace option
-	cyclictest -p 80 --breaktrace=2000 --tracemark
+        # Launch cyclictest with the breaktrace option
+        cyclictest -p 80 --breaktrace=2000 --tracemark
 
-	# When the high latency is hit, you can display the trace
-	trace-cmd show
+        # When the high latency is hit, you can display the trace
+        trace-cmd show
 \end{bashinput}
 
 \section{Using the osnoise tracer}

@@ -93,12 +93,12 @@ For raw flash storage, on top of the UBI layer
       \begin{itemize}
       \item Good read and write performance (similar to YAFFS2)
       \item Other advantages: better for wear leveling (can operate on the
-	    whole UBI space, not only within a single partition).
+            whole UBI space, not only within a single partition).
       \end{itemize}
 \item Drawbacks:
       \begin{itemize}
       \item Not appropriate for small partitions (too much metadata
-	    overhead). Use JFFS2 or YAFFS2 instead.
+            overhead). Use JFFS2 or YAFFS2 instead.
       \item Not so good mount time, because of the time needed
             to initialize UBI ({\em UBI Attach}: at boot time or running
             \code{ubi_attach} in user space).

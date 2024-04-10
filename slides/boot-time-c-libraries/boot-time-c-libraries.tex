@@ -56,7 +56,7 @@
       \item A lightweight, fast and simple library for embedded systems
       \item Created while uClibc's development was stalled
       \item In particular, great at making small static executables,
-	    which can run anywhere, even on a system built
+            which can run anywhere, even on a system built
             from another C library.
       \item More permissive license (MIT), making it easier to release
             static executables. We will talk about the requirements
@@ -114,12 +114,12 @@ compare the size
     none of them have the goal of allowing the compilation of large
     existing applications
   \item They can run only relatively simple programs,
-	typically to make very small static executables and run
-	in very small root filesystems.
+        typically to make very small static executables and run
+        in very small root filesystems.
   \item Choices:
     \begin{itemize}
     \item Newlib, \url{https://sourceware.org/newlib/},
-	  maintained by Red Hat, used mostly in Cygwin, in bare metal
+          maintained by Red Hat, used mostly in Cygwin, in bare metal
           and in small POSIX RTOS.
     \item Klibc, \url{https://en.wikipedia.org/wiki/Klibc},
           from the kernel community, designed to implement small executables
@@ -141,7 +141,7 @@ compare the size
         in the C library.
   \item In case you wish to make static executables, {\em musl} will be
         an easier choice in terms of licensing constraints.
-	The binaries will be smaller too.
+        The binaries will be smaller too.
         Note that static executables built with a given C library
         can be used in a system with a different C library.
   \end{itemize}

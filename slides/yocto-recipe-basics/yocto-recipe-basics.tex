@@ -135,7 +135,7 @@
         \item When using git, it is necessary to also define
           \yoctovar{SRCREV}. It has to be a commit hash and not a tag to
           be able to do offline builds (a git tag can change, you then need
-	  to connect to the repository to check for a possible update).
+          to connect to the repository to check for a possible update).
           The \code{branch} parameter is mandatory as a safety check
           that \yoctovar{SRCREV} is on the expected branch.
       \end{itemize}
@@ -455,7 +455,7 @@ addtask do_mkimage after do_compile before do_install
     \item For example, when an upstream \code{Makefile} uses hardcoded
           \code{CC} and/or \code{CFLAGS}.
     \item You can call \code{make} with the \code{-e} option
-	  which gives precedence to variables taken from the
+          which gives precedence to variables taken from the
           environment:
   \end{itemize}
   \begin{block}{}

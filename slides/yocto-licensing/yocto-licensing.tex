@@ -128,8 +128,8 @@ ARCHIVER_MODE[src] = "configured"
   \begin{itemize}
      \item License compliance assessment
      \item Vulnerability assessment. You can use the SBoM to check
-	   whether your software supply chain is impacted by currently known
-	   vulnerabilities, both in host and target packages.
+           whether your software supply chain is impacted by currently known
+           vulnerabilities, both in host and target packages.
   \end{itemize}
   The US government is pushing for having such information
   in all software it procures and will probably make it mandatory soon.
@@ -142,14 +142,14 @@ ARCHIVER_MODE[src] = "configured"
      \item JSON SPDX files will be generated in \code{tmp/deploy/images/MACHINE/}
      \item You can then set optional variables:
            \begin{itemize}
-	      \item \yoctovar{SPDX_PRETTY}:
-		    Make generated files more human readable (newlines, indentation)
-	      \item \yoctovar{SPDX_ARCHIVE_PACKAGED}:
-		    Add compressed archives of the files in generated target packages.
-	      \item \yoctovar{SPDX_INCLUDE_SOURCES}:
-		    Add descriptions of the source files for host tools and target packages.
-	      \item \yoctovar{SPDX_ARCHIVE_SOURCES}:
-		    Add archives of these source files themselves (when \yoctovar{SPDX_INCLUDE_SOURCES} is set).
+              \item \yoctovar{SPDX_PRETTY}:
+                    Make generated files more human readable (newlines, indentation)
+              \item \yoctovar{SPDX_ARCHIVE_PACKAGED}:
+                    Add compressed archives of the files in generated target packages.
+              \item \yoctovar{SPDX_INCLUDE_SOURCES}:
+                    Add descriptions of the source files for host tools and target packages.
+              \item \yoctovar{SPDX_ARCHIVE_SOURCES}:
+                    Add archives of these source files themselves (when \yoctovar{SPDX_INCLUDE_SOURCES} is set).
            \end{itemize}
   \end{itemize}
 \end{frame}
@@ -196,11 +196,11 @@ ARCHIVER_MODE[src] = "configured"
   \frametitle{Further resources about SPDX SBoM}
     \begin{itemize}
        \item Yocto project documentation:\\
-	     \url{https://docs.yoctoproject.org/dev/dev-manual/sbom.html}
+             \url{https://docs.yoctoproject.org/dev/dev-manual/sbom.html}
        \item Joshua Watt: Automated SBoM generation with OpenEmbedded and the Yocto Project (FOSDEM 2023) \\
-	     \url{https://youtu.be/Q5UQUM6zxVU}
+             \url{https://youtu.be/Q5UQUM6zxVU}
        \item SPDX project homepage:\\
-	     \url{https://spdx.dev}
+             \url{https://spdx.dev}
     \end{itemize}
 \end{frame}
 

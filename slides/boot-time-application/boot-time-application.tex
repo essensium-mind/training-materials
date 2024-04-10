@@ -3,23 +3,23 @@
 \begin{frame}
 \frametitle{Measuring: strace}
 \begin{itemize}
-	\item Allows to trace all the system calls made by an
+        \item Allows to trace all the system calls made by an
               application and its children.
-	\item Useful to:
-	\begin{itemize}
-		\item Understand how time is spent in user space
-		\item For example, easy to find file open attempts (\code{open()}),
-		      file access (\code{read()}, \code{write()}), and
-		      memory allocations (\code{mmap2()}). Can be done
-		      without any access to source code!
-		\item Find the biggest time consumers
-		      (low hanging fruit)
-		\item Find unnecessary work done in applications
-		      and scripts. Example: opening the same file(s)
-		      multiple times, or trying to open files that
-		      do not exist.
-	\end{itemize}
-	\item Limitation: you can't trace the \code{init} process!
+        \item Useful to:
+        \begin{itemize}
+                \item Understand how time is spent in user space
+                \item For example, easy to find file open attempts (\code{open()}),
+                      file access (\code{read()}, \code{write()}), and
+                      memory allocations (\code{mmap2()}). Can be done
+                      without any access to source code!
+                \item Find the biggest time consumers
+                      (low hanging fruit)
+                \item Find unnecessary work done in applications
+                      and scripts. Example: opening the same file(s)
+                      multiple times, or trying to open files that
+                      do not exist.
+        \end{itemize}
+        \item Limitation: you can't trace the \code{init} process!
 \end{itemize}
 \end{frame}
 
@@ -30,22 +30,22 @@
 \begin{frame}[fragile]
 \frametitle{perf}
 \begin{itemize}
-	\item Uses hardware performance counters, much faster than Valgrind!
-	\item Need a kernel with \kconfig{CONFIG_PERF_EVENTS} and \kconfig{CONFIG_HW_PERF_EVENTS}
-	\item User space tool: \code{perf}. It is part of the kernel
-		sources so it is always in sync with your kernel.
-	\item Usage:
-	\begin{block}{}
+        \item Uses hardware performance counters, much faster than Valgrind!
+        \item Need a kernel with \kconfig{CONFIG_PERF_EVENTS} and \kconfig{CONFIG_HW_PERF_EVENTS}
+        \item User space tool: \code{perf}. It is part of the kernel
+                sources so it is always in sync with your kernel.
+        \item Usage:
+        \begin{block}{}
 \begin{verbatim}
 perf record /my/command
 \end{verbatim}
-	\end{block}
-	\item Get the results with:
-	\begin{block}{}
+        \end{block}
+        \item Get the results with:
+        \begin{block}{}
 \begin{verbatim}
 perf report
 \end{verbatim}
-	\end{block}
+        \end{block}
         \item Note: advice to run \code{perf} on a filesystem built with
               glibc. Didn't manage to compile \code{perf} on a Musl
               root filesystem (Buildroot 2021.02 status). Once again, glibc is

@@ -629,7 +629,7 @@ c0000030: 00000000 00000000 00000000 00000000  ................
     \item Load a file: \code{load <interface> [<dev[:part]> [<addr> [<filename> [bytes [pos]]]]]}
     \item List files: \code{ls <interface> [<dev[:part]> [directory]]}
     \item Get the size of a file: \code{size <interface> <dev[:part]> <filename>}\\
-	  (result stored in \code{filesize} environment variable)
+          (result stored in \code{filesize} environment variable)
     \item \code{interface}: \code{mmc}, \code{usb}
     \item \code{dev}: device number, \code{0} for first device, \code{1} for second device
     \item \code{part}: partition number
@@ -832,7 +832,7 @@ Kernel image @ 0xc2000000 [ 0x000000 - 0x7306c8 ]
     \item Any other image: FPGA bitstream, etc.
     \end{itemize}
   \item Typically useful for secure booting and to ensure binaries
-	don't overlap in memory.
+        don't overlap in memory.
   \item Interestingly, relies on the {\em Device Tree Compiler}
     \begin{itemize}
     \item \code{.its} file describes the contents of the image
@@ -857,7 +857,7 @@ Kernel image @ 0xc2000000 [ 0x000000 - 0x7306c8 ]
           as defined by the bootable flag of the partition table
     \item With the \code{sysboot} command, will look for a
           \code{/extlinux/extlinux.conf} or \code{/boot/extlinux/extlinux.conf}
-	  file describing how to boot, and will offer a prompt in the console
+          file describing how to boot, and will offer a prompt in the console
           to choose between available configurations.
     \item Once a configuration is selected, will load and boot the
           corresponding kernel, device tree and initramfs images.
