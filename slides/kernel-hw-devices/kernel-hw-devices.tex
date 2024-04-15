@@ -21,6 +21,29 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}[fragile]
+  \frametitle{Discoverable hardware USB example}
+\begin{minted}[fontsize=\scriptsize]{c}
+/* drivers/bluetooth/ath3k.c */
+
+static const struct usb_device_id ath3k_table[] = {
+        /* Atheros AR3011 */
+        { USB_DEVICE(0x0CF3, 0x3000) },
+        ...
+}
+MODULE_DEVICE_TABLE(usb, ath3k_table);
+
+static struct usb_driver ath3k_driver = {
+        .name           = "ath3k",
+        .probe          = ath3k_probe,
+        .disconnect     = ath3k_disconnect,
+        .id_table       = ath3k_table,
+        .disable_hub_initiated_lpm = 1,
+};
+\end{minted}
+\end{frame}
+
+
 \subsection{Describing non-discoverable hardware}
 
 \begin{frame}{Non-discoverable buses}
