@@ -41,6 +41,8 @@
   \end{itemize}
 \end{frame}
 
+\questionslide{Why is it call \code{pinctrl} and not e.g. \code{pinmux}}
+
 \begin{frame}{{\tt pinctrl} subsystem diagram}
   \begin{center}
     \includegraphics[height=0.8\textheight]{slides/kernel-pinmuxing/pinctrl-subsystem.pdf}
@@ -89,6 +91,8 @@ i2c0: i2c@f8014000 {
     Case with multiple pin states (\kfile{arch/arm/boot/dts/sama5d4.dtsi})
   \end{columns}
 \end{frame}
+
+\questionslide{Find in code how non-\code{default} pinctrl is used}
 
 \begin{frame}{Defining pinctrl configurations}
   \begin{itemize}
