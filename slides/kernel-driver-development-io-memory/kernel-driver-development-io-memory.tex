@@ -120,7 +120,8 @@ void iounmap(void __iomem *addr);
         \item Takes care of \kfunc{platform_get_resource},
               \kfunc{request_mem_region} and \kfunc{ioremap}
         \item Caution: unlike the other \code{devm_} functions, its
-              first argument is of type \kstruct{pdev}, not a pointer to \kstruct{device}:
+              first argument is of type \kstruct{platform_device}, not a
+              pointer to \kstruct{device}:
         \item Example: \kfile{drivers/char/hw_random/st-rng.c}:
         \begin{block}{}
         \begin{minted}{c}
